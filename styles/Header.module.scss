@@ -3,6 +3,10 @@
 
 .headerWrap {
     padding: 20px 40px;
+
+    @include mobile {
+        padding: 20px;
+    }
 }
 
 .headerTop {
