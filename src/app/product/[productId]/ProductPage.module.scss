@@ -1,8 +1,36 @@
 @import '../../../../styles/colors';
 @import '../../../../styles/mixins';
 
-.productCol {
-    display: flex;
-    flex-wrap: wrap;
-    column-gap: 60px;
+.productWrap {
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: 1fr 1fr; 
+    gap: 20px 50px; 
+    grid-template-areas: 
+        "photo info"
+        "review info"; 
+
+    @include mobile {
+            
+        grid-template-columns: 1fr; 
+        grid-template-rows: 1fr auto auto; 
+        gap: 20px 50px; 
+        grid-template-areas: 
+            "photo"
+            "info"
+            "review"; 
+    }
+}
+
+.productPhoto {
+    grid-area: photo;
+    aspect-ratio: 1/1;
+}
+
+.productReview { 
+    grid-area: review;
+}
+
+.productInfo { 
+    grid-area: info;
 }
