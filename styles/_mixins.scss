@@ -1,0 +1,28 @@
+@mixin desktop {
+    @media only screen and (min-width: 1281px) {
+        @content;
+    }
+}
+
+@mixin nonDesktop {
+    @media only screen and (max-width: 1280px) {
+        @content;
+    }
+}
+
+@mixin mobile {
+    @media only screen and (max-width: 768px) {
+        @content;
+    }
+}
+
+@mixin wideScreen {
+    @media only screen and (min-width: 1920px) {
+        @content;
+    }
+}
+
+@function calculateRem($size) {
+    $remSize: calc($size / 16px);
+    @return #{$remSize}rem;
+}
