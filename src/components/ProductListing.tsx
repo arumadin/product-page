@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, Suspense } from 'react'
 import styles from '../../styles/ProductListing.module.scss'
 import ProductCard from './ProductCard'
 import { useSearchParams } from 'next/navigation'
@@ -82,6 +82,7 @@ export default function ProductListing() {
     handleSort()
 
     return (
+        <Suspense>
         <div>
             <h2>Product Listing</h2>
             <Filter category={category} handleChange={handleChange}></Filter>
@@ -94,5 +95,6 @@ export default function ProductListing() {
                 Load More
             </button>
         </div>
+        </Suspense>
     )
 }

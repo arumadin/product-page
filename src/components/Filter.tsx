@@ -2,10 +2,10 @@
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-import React, { ChangeEventHandler } from 'react'
+import React, { ChangeEventHandler , Suspense } from 'react'
 import FilterPanel from './FilterPanel'
 
-function Filter({category, handleChange}: {category: string[], handleChange: ChangeEventHandler<HTMLInputElement> }) {
+export default function Filter({category, handleChange}: {category: string[], handleChange: ChangeEventHandler<HTMLInputElement> }) {
     const pathname = usePathname();
     const searchParams = useSearchParams();
     const { replace } = useRouter();
@@ -18,6 +18,7 @@ function Filter({category, handleChange}: {category: string[], handleChange: Cha
     };
 
     return (
+        <Suspense>
         <div>
             <FilterPanel category={category} handleChange={handleChange}></FilterPanel>
             <div className="">
@@ -33,7 +34,6 @@ function Filter({category, handleChange}: {category: string[], handleChange: Cha
                 </select>
             </div>
         </div>
+        </Suspense>
     )
 }
-
-export default Filter
