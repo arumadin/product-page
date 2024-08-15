@@ -96,9 +96,6 @@ export default function ProductListing() {
                         return item && <ProductCard key={item.id} {...item}></ProductCard>
                     })}
                 </div>
-                {/* <button className='loadMore'>
-                Load More
-            </button> */}
             </div>
         </Suspense>
     )
