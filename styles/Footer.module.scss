@@ -1,0 +1,13 @@
+@import 'colors';
+@import 'mixins';
+
+.footerWrap {
+    padding: 40px 40px 100px;
+    margin-top: 60px;
+    background-color: $cream;
+    text-align: center;
+
+    @include mobile {
+        padding: 20px;
+    }
+}
