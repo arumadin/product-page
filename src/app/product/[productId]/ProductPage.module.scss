@@ -3,16 +3,15 @@
 
 .productWrap {
     display: grid; 
-    grid-template-columns: 1fr 1fr; 
-    grid-template-rows: 1fr 1fr; 
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: auto 1fr;
     gap: 20px 50px; 
     grid-template-areas: 
         "photo info"
         "review info"; 
 
     @include mobile {
-            
-        grid-template-columns: 1fr; 
+        grid-template-columns: repeat(1, minmax(0, 1fr));
         grid-template-rows: 1fr auto auto; 
         gap: 20px 50px; 
         grid-template-areas: 
@@ -24,7 +23,11 @@
 
 .productPhoto {
     grid-area: photo;
-    aspect-ratio: 1/1;
+    max-width: calc((1280px - 50px) / 2);
+
+    @include mobile {
+        max-width: 100%;
+    }
 }
 
 .productReview { 
@@ -33,4 +36,14 @@
 
 .productInfo { 
     grid-area: info;
+}
+
+.price {
+    font-size: calculateRem(20px)
+}
+
+.priceBeforeDiscount {
+    text-decoration: line-through;
+    display: inline-block;
+    margin-right: 10px;
 }

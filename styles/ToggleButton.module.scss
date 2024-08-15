@@ -1,0 +1,41 @@
+@import 'colors';
+
+.toggleButton {
+    margin: 10px 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 10px;
+    column-gap: 10px;
+
+    li {
+        list-style: none; 
+    }
+
+    label {
+        background-color:#0b1b35;
+        display: block;
+        width: fit-content;
+        color: $white;
+        border-radius: 20px;
+
+        span {
+            font-size: 14px;
+            font-weight: 600;
+            padding: 10px 20px;
+            display: block;
+            border-radius: 20px;
+        }
+
+        input {
+            position:absolute;
+            top:-20px;
+            background-color:#0b1b35;
+        }
+
+        input:checked + span {
+            background-color:#88B646;
+            color:#F7F7F7;
+        }
+    }
+} 

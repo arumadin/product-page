@@ -4,39 +4,28 @@ import Image from 'next/image'
 import Link from 'next/link'
 import styles from '../../styles/ProductCard.module.scss'
 
-// const CTAButton = React.forwardRef(({onClick}, ref) => {
-//     return (
-//         <button onClick={onClick} ref={ref}>
-//             Add to Cart
-//         </button>
-//     )
-// })
-
 type ProductProps = {
     id: number
-    title: string
+    product_name: string
     price: number
-    description: string
-    category: string
-    image: string
-    rating: {
-        rate: number
-        count: number
-        }
+    photo_main: {
+        imgUrl: string
+        imgAlt: string
+    }
 }
 
 
-function ProductCard(props : ProductProps) {
-  return (
-    <Link
-        href={{
-            pathname: `/product/${props.id}`,
-        }}
-        className={styles.productCard}
-    >
+function ProductCard(props: ProductProps) {
+    return (
+        <Link
+            href={{
+                pathname: `/product/${props.id}`,
+            }}
+            className={styles.productCard}
+        >
             <div className={styles.productCardImage}>
                 <Image
-                    src={props.image}
+                    src={props.photo_main.imgUrl}
                     width={200}
                     height={200}
                     alt='Picture of '
@@ -45,7 +34,7 @@ function ProductCard(props : ProductProps) {
             </div>
             <div className={styles.productDesc}>
                 <div className={styles.productTitle}>
-                    {props.title}
+                    {props.product_name}
                 </div>
                 <div className={styles.productPrice}>
                     ${props.price}
@@ -55,15 +44,12 @@ function ProductCard(props : ProductProps) {
                     e.stopPropagation();
                 }}>
                     <button>
-                        Add to Cart
+                        <span>Add to Cart</span>
                     </button>
-                    
                 </div>
             </div>
-            
-
-    </Link>
-  )
+        </Link>
+    )
 }
 
 export default ProductCard

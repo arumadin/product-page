@@ -2,8 +2,43 @@ body {
     margin: 0;
 }
 
+a {
+    text-decoration: none;
+    color: #252525;
+}
+
 button {
     cursor: pointer;
-    padding: 10px 20px;
-    background-color: #f0eb76
+    padding: 10px 40px;
+    background-color: #f0eb76;
+    border-radius: 25px;
+    border-width: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+button span {
+  position: relative;
+  transition: 0.5s;
+  font-weight: 600;
+}
+
+button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 130%;
+    height: 100%;
+    background-color: #88B646;
+    transform: translate(-110%, 0) skew(-30deg);
+    transition: 0.5s;
+}
+
+button:hover span {
+    color: #fff;
+}
+
+button:hover::before {
+    transform: translate(-5%, 0) skew(-15deg);
 }
