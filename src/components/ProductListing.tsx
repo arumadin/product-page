@@ -88,7 +88,7 @@ export default function ProductListing() {
                 <div className={styles.listingIntro}>
                     <div className={styles.banner}></div>
                     <h2 className={styles.listingPageTitle}>Welcome to Village Grocer</h2>
-                    <p>Discover a world of fresh and delicious groceries right at your fingertips. From pantry staples to exotic finds, we've got everything you need for a well-stocked kitchen.</p>
+                    <p>Discover a world of fresh and delicious groceries right at your fingertips. From pantry staples to exotic finds, we have got everything you need for a well-stocked kitchen.</p>
                 </div>
                 <Filter category={category} handleChange={handleChange}></Filter>
                 <div className={styles.productListing}>
