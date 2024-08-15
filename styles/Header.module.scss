@@ -3,6 +3,8 @@
 
 .headerWrap {
     padding: 20px 40px;
+    border-bottom: solid 2px $black-25;
+    margin-bottom: 20px;
 
     @include mobile {
         padding: 20px;
@@ -14,9 +16,12 @@
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 20px;
 }
 
-.searchBar {
-    padding: 20px 0;
+.headerLogo {
+    font-size: calculateRem(24px);
 }
+
+// .searchBar {
+//     padding: 20px 0;
+// }

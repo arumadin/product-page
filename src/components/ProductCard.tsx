@@ -3,11 +3,13 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import styles from '../../styles/ProductCard.module.scss'
+import stylesPrice from '../app/product/[productId]/ProductPage.module.scss'
 
 type ProductProps = {
     id: number
     product_name: string
     price: number
+    discount: number
     photo_main: {
         imgUrl: string
         imgAlt: string
@@ -36,8 +38,10 @@ function ProductCard(props: ProductProps) {
                 <div className={styles.productTitle}>
                     {props.product_name}
                 </div>
-                <div className={styles.productPrice}>
-                    ${props.price}
+                <div className={stylesPrice.productPrice}>
+                    {/* ${props.price} */}
+                    {props.discount !== 0 && <span className={stylesPrice.priceBeforeDiscount}>${props.price}</span>}
+                    ${props.discount !== 0 ? ((100 - props.discount) / 100 * props.price) + ' ' : props.price}
                 </div>
                 <div className={styles.productCTA} onClick={(e) => {
                     e.preventDefault();

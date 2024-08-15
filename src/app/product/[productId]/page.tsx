@@ -4,8 +4,9 @@ import styles from './ProductPage.module.scss'
 import ProductGallery from '@/components/ProductGallery'
 import containerStyles from '../../../../styles/Container.module.scss'
 import AccordionPanel from '@/components/AccordionPanel'
-import ToggleButton from '../../../../styles/ToggleButton.module.scss'
 import Spacing from '../../../../styles/Spacing.module.scss'
+import Reviews from '@/components/Reviews'
+import ProductVariant from '@/components/ProductVariant'
 
 type SizeVariant = {
     option: string
@@ -28,6 +29,12 @@ type ProductProps = {
         imgAlt: string
     }
     variant: VariantProps
+    reviews: [
+        {
+            review: string
+            rating: number
+        }
+    ]
 }
 
 function Page({ params }: { params: { productId: string } }) {
@@ -52,13 +59,13 @@ function Page({ params }: { params: { productId: string } }) {
 
     const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
         const variantPrice = parseInt(e.currentTarget.value);
-        let updatedProduct:any= { ...product, price: variantPrice }
+        let updatedProduct: any = { ...product, price: variantPrice }
         setProduct({ ...updatedProduct })
     }
 
     const handleAddToCart = () => {
-        let item:any = {...product}
-        setCart(prevCart => [...prevCart, {...item}])
+        let item: any = { ...product }
+        setCart(prevCart => [...prevCart, { ...item }])
     }
 
     return (
@@ -71,84 +78,35 @@ function Page({ params }: { params: { productId: string } }) {
                         </div>
                         <div className={styles.productInfo}>
                             <h2>{product.product_name}</h2>
-                            {/* <div>Add to wishlist</div>
-                    <div>rating</div> */}
                             <p className={styles.price}>
                                 {product.discount !== 0 && <span className={styles.priceBeforeDiscount}>${product.price}</span>}
                                 ${product.discount !== 0 ? ((100 - product.discount) / 100 * product.price) + ' ' : product.price}
                             </p>
                             <p>{product.product_description}</p>
-                            <div>
-                                {product.variant.flavor && (
-                                    <>
-                                        <h4 className={Spacing['mb-1']}>Flavor</h4>
-                                        <ul className={ToggleButton.toggleButton}>
-                                            {product.variant.flavor.map((item, idx) => {
-                                                return (
-                                                    <li key={idx}>
-                                                        <label>
-                                                            <input
-                                                                type="radio"
-                                                                value={item}
-                                                                name='variantFlavor'
-                                                            />
-                                                            <span>
-                                                                {item}
-                                                            </span>
-                                                        </label>
-                                                    </li>
-                                                )
-                                            })}
-                                        </ul>
-                                    </>
-                                )}
-                                {product.variant.size && (
-                                    <>
-                                        <h4 className={Spacing['mb-1']}>Size</h4>
-                                        <ul className={ToggleButton.toggleButton}>
-                                            {product.variant.size.map((item, idx) => {
-                                                return (
-                                                    <li key={idx}>
-                                                        <label>
-                                                            <input
-                                                                type="radio"
-                                                                value={item.price}
-                                                                name='variantSize'
-                                                                onChange={handleChange}
-                                                            />
-                                                            <span>
-                                                                {item.option}
-                                                            </span>
-                                                        </label>
-                                                    </li>
-                                                )
-                                            })}
-                                        </ul>
-                                    </>
-                                )}
-                            </div>
+                            <ProductVariant product={product} handleChange={handleChange}></ProductVariant>
                             <button
                                 onClick={handleAddToCart}
+                                className={`${Spacing['mb-4']} ${Spacing['mt-2']}`}
                             >
                                 <span>Add to Cart</span>
                             </button>
-                            {/* <ProductDetails product={product} title={"Product Details"}></ProductDetails> */}
                             <AccordionPanel title="Product Details">
                                 {product.product_description}
                             </AccordionPanel>
                             <AccordionPanel title="Delivery & Returns">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolores alias qui ut ipsa eligendi, ea maxime optio enim quae facilis?
+                                <ul>
+                                    <li>Orders are typically delivered within 3 hours from order placement, subject to availability and delivery area.</li>
+                                    <li>A delivery fee may apply, depending on the order value and delivery distance.</li>
+                                    <li>Customers have 3 days to return damaged or incorrect items for a full refund or replacement.</li>
+                                    <li>Perishable items cannot be returned due to hygiene reasons.</li>
+                                    <li>For returns, customers must contact customer service within 3 hours of delivery to initiate the return process.</li>
+                                </ul>
                             </AccordionPanel>
                         </div>
 
-                        <div className={styles.productReview}>
-                            <h4>Review</h4>
-                        </div>
+                        <Reviews product={product}></Reviews>
 
                     </div>
-                    {/* <div className="recommendations">
-                        You may also like...
-                    </div> */}
                 </>
             )}
         </main>

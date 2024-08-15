@@ -24,9 +24,9 @@ export default function Header() {
     <div className={styles.headerWrap}>
         <div className={styles.headerTop}>
             <div>Wishlist</div>
-            <Link href={'/'}>Village Grocer</Link>
+            <Link href={'/'} className={styles.headerLogo}>Village Grocer</Link>
             
-            <div>Shopping Cart {cart && cart.length}</div>
+            <div>Cart ({cart && cart.length})</div>
         </div>
     </div>
   )

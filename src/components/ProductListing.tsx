@@ -10,6 +10,7 @@ type ProductProps = {
     id: number
     product_name: string
     price: number
+    discount: number
     photo_main: {
         imgUrl: string
         imgAlt: string
@@ -56,7 +57,7 @@ export default function ProductListing() {
         if (e.currentTarget.checked) {
             setSelectedCategory(prevSelected => [...prevSelected, selectedValue])
         } else {
-            let newSelectedCategory = selectedCategory.filter((item:any)=> item !== selectedValue)
+            let newSelectedCategory = selectedCategory.filter((item: any) => item !== selectedValue)
             setSelectedCategory(prevSelected => [...newSelectedCategory])
         }
     }
@@ -66,15 +67,15 @@ export default function ProductListing() {
             const sortType = params.get("sort")
 
             if (sortType === "asc") {
-                let sortedProd = filteredProducts.sort((a:any, b:any) => a.price - b.price);
+                let sortedProd = filteredProducts.sort((a: any, b: any) => a.price - b.price);
             }
 
             if (sortType === "desc") {
-                let sortedProd = filteredProducts.sort((a:any, b:any) => b.price - a.price);
+                let sortedProd = filteredProducts.sort((a: any, b: any) => b.price - a.price);
             }
 
             if (sortType === "bestseller") {
-                let sortedProd = filteredProducts.sort((a:any, b:any) => b.number_of_sales - a.number_of_sales);
+                let sortedProd = filteredProducts.sort((a: any, b: any) => b.number_of_sales - a.number_of_sales);
             }
         }
     }
@@ -83,18 +84,22 @@ export default function ProductListing() {
 
     return (
         <Suspense>
-        <div>
-            <h2>Product Listing</h2>
-            <Filter category={category} handleChange={handleChange}></Filter>
-            <div className={styles.productListing}>
-                {filteredProducts && filteredProducts.map((item) => {
-                    return item && <ProductCard key={item.id} {...item}></ProductCard>
-                })}
-            </div>
-            <button className='loadMore'>
+            <div>
+                <div className={styles.listingIntro}>
+                    <div className={styles.banner}></div>
+                    <h2 className={styles.listingPageTitle}>Welcome to Village Grocer</h2>
+                    <p>Discover a world of fresh and delicious groceries right at your fingertips. From pantry staples to exotic finds, we've got everything you need for a well-stocked kitchen.</p>
+                </div>
+                <Filter category={category} handleChange={handleChange}></Filter>
+                <div className={styles.productListing}>
+                    {filteredProducts && filteredProducts.map((item) => {
+                        return item && <ProductCard key={item.id} {...item}></ProductCard>
+                    })}
+                </div>
+                {/* <button className='loadMore'>
                 Load More
-            </button>
-        </div>
+            </button> */}
+            </div>
         </Suspense>
     )
 }

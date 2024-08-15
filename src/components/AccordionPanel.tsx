@@ -8,15 +8,24 @@ export default function AccordionPanel({ title, children }: { title: string, chi
 
     return (
         <section className={styles.accordion}>
-            <h4 className={spacing['mt-0']}>{title}</h4>
-            <button className={styles.accordionBtn} onClick={() => setIsActive(!isActive)}>
-                {isActive ? 'Close' : 'Show'}
-            </button>
-            {isActive && (
-                <>
-                    {children}
-                </>
-            )}
+            <div className={styles.accordionHead}>
+                <h4 className={spacing['mt-0']}>{title}</h4>
+                <div className={styles.accordionBtn} onClick={() => setIsActive(!isActive)}>
+                    {isActive ? (
+                        <span className={styles.arrowClose}></span>
+                    ) : (
+                        <span className={styles.arrow}></span>
+                    )}
+                </div>
+            </div>
+
+            <div className={styles.accordionContent}>
+                {isActive && (
+                    <>
+                        {children}
+                    </>
+                )}
+            </div>
         </section>
     );
 }
