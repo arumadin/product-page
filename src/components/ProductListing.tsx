@@ -63,7 +63,7 @@ export default function ProductListing() {
 
     const handleSort = () => {
         if (searchParams.size !== 0) {
-            const [sortType, sortBy] = params.get("sort")?.split(' ');
+            const sortType = params.get("sort")
 
             if (sortType === "asc") {
                 let sortedProd = filteredProducts.sort((a:any, b:any) => a.price - b.price);
