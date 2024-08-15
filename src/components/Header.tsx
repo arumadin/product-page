@@ -24,7 +24,7 @@ export default function Header() {
     <div className={styles.headerWrap}>
         <div className={styles.headerTop}>
             <div>Wishlist</div>
-            <Link href={'/'} >ShopName</Link>
+            <Link href={'/'}>Village Grocer</Link>
             
             <div>Shopping Cart {cart && cart.length}</div>
         </div>

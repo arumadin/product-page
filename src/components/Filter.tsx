@@ -4,6 +4,8 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import React, { ChangeEventHandler, Suspense } from 'react'
 import FilterPanel from './FilterPanel'
+import styles from '../../styles/Filter.module.scss'
+import spacing from '../../styles/Spacing.module.scss'
 
 export default function Filter({ category, handleChange }: { category: string[], handleChange: ChangeEventHandler<HTMLInputElement> }) {
     const pathname = usePathname();
@@ -19,9 +21,10 @@ export default function Filter({ category, handleChange }: { category: string[],
 
     return (
         <Suspense>
-            <div>
+            <div className={styles.controlWrap}>
                 <FilterPanel category={category} handleChange={handleChange}></FilterPanel>
-                <div className="">
+                <div className={styles.sortWrap}>
+                    <p>Sort</p>
                     <select
                         name="sort"
                         id=""
