@@ -55,7 +55,7 @@ function Page({ params }: { params: { productId: string } }) {
                 setVariant({ ...selectedVar })
                 setProduct({ ...productDataByID })
             })
-    }, [])
+    }, [params.productId])
 
     const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
         const variantPrice = parseInt(e.currentTarget.value);

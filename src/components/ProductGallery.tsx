@@ -41,7 +41,7 @@ function ProductGallery({ params }: { params: { productId: string } }) {
                 let productPhotos = productDataByID.gallery
                 setPhotos([...productPhotos])
             })
-    }, [])
+    }, [params.productId])
 
 
     return (
